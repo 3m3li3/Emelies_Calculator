@@ -29,17 +29,17 @@ namespace Emelies_Calculator
                 double number1 = 0;
                 double number2 = 0;
                 double result = 0;
-                
+
                 //Declaring the variables for "fun with circles etc.."
                 double choice, r, l, w, b, h;
                 double area = 0;
-                
+
                 //Clearing the console inbetween loops
                 Console.Clear();
-                
+
                 //Changing the text-colour of "Console Calculator"
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                
+
                 //Welcome message
                 Console.WriteLine("\t\t___________________________________");
                 Console.WriteLine("   \n\t\t\tConsole Calculator  ");
@@ -102,7 +102,7 @@ namespace Emelies_Calculator
                             break;
                         }
 
-                                             
+
                         /** I realize a nested switch inside another switch isn't alwasýs a good thing, 
                          * but so far I don't know of a better way of doing it and there are only three cases in this switch. 
                          * I tried to make a method of the whole switch but did not succeed.**/
@@ -145,7 +145,7 @@ namespace Emelies_Calculator
                                 previousCalculations.Add(save);
                                 break;
 
-                            
+
                         }
                         //Fixing, clearing the menu & typing out the result of the calculation..
                         Console.Clear();
@@ -170,7 +170,7 @@ namespace Emelies_Calculator
                         foreach (var item in previousCalculations)
                         {
                             Console.WriteLine(item);
-                           
+
                         }
 
                         //If the user hasn't made a calculation yet, this message appears
@@ -268,7 +268,7 @@ namespace Emelies_Calculator
                         //Division
                         case "/":
                             Console.Clear();
-                            
+
                             /*A while loop to catch if the user puts in 0 as a second number
                              *as you can't divide anything by 0. At first I had an if-else solution here but 
                              *decided on a while-loop since I want to give the user the option to enter the
@@ -282,7 +282,7 @@ namespace Emelies_Calculator
 
                             //Showing the result of division
                             Console.Write("Your result: {0} / {1} = {2}\n", number1, number2, number1 / number2);
-                            
+
                             //Saving the calculation to my list
                             save = "Calculation: " + number1 + " / " + number2 + " = " + result;
                             previousCalculations.Add(save);
@@ -353,7 +353,7 @@ namespace Emelies_Calculator
 
             Console.ReadKey();
 
-            //Test
+
 
         }
     }

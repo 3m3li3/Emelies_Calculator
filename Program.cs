@@ -1,11 +1,27 @@
 ﻿/** Jag har skapat en simpel miniräknare som kan räkna ut summan, division, multiplikation och
  * modulo mellan två tal, samt att kunna räkna ut arean för cirklar, rektanglar och trianglar. 
  * För att utöka miniräknaren, för att t.ex. kunna göra uträkningar med fler tal
- * hade jag (skapat ett regex för att kunna prioritera operatorerna). Vad gäller gränssnittet är jag nöjd men hade föredragit
- * en pilmeny istället för knappvalen som jag har nu. Då hade antalet knapptryck och "krångligheten" blivit mindre. 
+ * hade jag skapat tokens för varje operator och lagra dem i en lista för att sedan kunna
+ * validera resultatet och vidare prioritera operatorerna (order of operations). 
+ * 
+ * Vad gäller gränssnittet är jag nöjd men hade föredragit en pilmeny istället för knappvalen som jag har nu.
+ * Då hade antalet knapptryck och "krångligheten" blivit mindre. Jag hade också föredragit om man kunde skriva in
+ * hela beräkningen på en gång t.ex. 6-6 och direkt få resultatet, på sättet jag har skapat programmet
+ * blir det några fler knapptryck, det hade varit snyggare utan det.
+ * 
  * Jag har valt att inte skapa egna klasser i detta projekt men hade en idé om att skapa egna klasser för t.ex. kunna 
- * kalla på metoder för att ändra färgen på texten därigenom istället för att skriva det i program, det hade gjort
- * att koden blir mer lättläst och inte lika kluddig av "onödiga" saker som bara styr det visuella.
+ * kalla på metoder för att ändra färgen på texten därigenom istället för att skriva det direkt i programmet, det hade gjort
+ * att koden blir mer lättläst och inte lika kluddig av "onödiga" saker som bara styr det visuella. Även en del av det
+ * som blev metoder hade jag kunnat skapa klasser av istället, t.ex. för operanderna och uträkningarna. 
+ * 
+ * Jag har gått efter principen "don't repeat yourself" och istället skapat metoder som jag anropar
+ * på de ställen där jag annars hade behövt skriva samma kod upprepade gånger.
+ * 
+ * Jag har inte använt mig av några design patterns då jag känner att jag inte riktigt 
+ * begriper och behärskar det ännu, jag förstår innebörden av t.ex.
+ * "singleton" och jag hade nog kunnat använda mig av det i mitt program, men jag känner som sagt att jag 
+ * inte är tillräckligt duktig ännu.
+ * 
  * Jag har fler kommentarer i själva koden om varför jag valt att göra på ett visst sätt och saker jag velat förbättra 
  * eller göra annorlunda **/
 
@@ -103,9 +119,9 @@ namespace Emelies_Calculator
                         }
 
 
-                        /** I realize a nested switch inside another switch isn't alwasýs a good thing, 
+                        /* I realize a nested switch inside another switch isn't alwasýs a good thing, 
                          * but so far I don't know of a better way of doing it and there are only three cases in this switch. 
-                         * I tried to make a method of the whole switch but did not succeed.**/
+                         * I tried to make a method of the whole switch but did not succeed.*/
                         switch (choice)
                         {
                             case 1:
@@ -199,8 +215,8 @@ namespace Emelies_Calculator
                 }
 
 
-                /**Methods, they are all whitin the while-loop, 
-                 * therefor not placed at the very end of the program.**/
+                /*Methods, they are all whitin the while-loop, 
+                 * therefor not placed at the very end of the program.*/
 
                 //Method menuOfChoises() shows the first menu in program
                 void menuOfChoices()
@@ -278,6 +294,11 @@ namespace Emelies_Calculator
                                 Console.WriteLine("You can't divide a number by 0, enter another number please:");
                                 number2 = ReadDouble();
                             }
+                            /*Here I had to move the calculation part to 
+                             * down here in order to be able to save the result correctly to the
+                             * list, incase the user at first enters 0 as the second number. Otherwise 
+                             * the calculation didn't save correctly and instead the number 8 always
+                             * showed up as the result even though you cant divive by 0.*/
                             result = number1 / number2;
 
                             //Showing the result of division
